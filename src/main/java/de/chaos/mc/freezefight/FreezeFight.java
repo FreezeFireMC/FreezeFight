@@ -2,8 +2,11 @@ package de.chaos.mc.freezefight;
 
 import de.chaos.mc.freezefight.commands.setSpawnLocaton;
 import de.chaos.mc.freezefight.listeners.ConnectionListener;
+import de.chaos.mc.freezefight.listeners.DeathListener;
 import de.chaos.mc.freezefight.listeners.EventListener;
 import de.chaos.mc.freezefight.listeners.ProjectileListener;
+import de.chaos.mc.freezefight.utils.stats.StatsInterface;
+import de.chaos.mc.freezefight.utils.stats.StatsRepository;
 import de.chaos.mc.serverapi.api.ServerAPI;
 import de.chaos.mc.serverapi.utils.locationlibary.LocationInterface;
 import org.bukkit.Bukkit;
@@ -16,6 +19,9 @@ public class FreezeFight extends JavaPlugin {
     private static LocationInterface locationAPI;
     public static final String NAMESPACE = "FreezeWars";
 
+    private StatsRepository statsRepository;
+    private StatsInterface statsInterface;
+
      @Override
      public void onLoad() {
          instance = this;
@@ -26,6 +32,9 @@ public class FreezeFight extends JavaPlugin {
         serverAPI = new ServerAPI();
         locationAPI = serverAPI.getLocationInterface();
 
+        statsRepository = new StatsRepository(serverAPI.getConnectionSource());
+        statsInterface = statsRepository;
+
         getCommand("setSpawn").setExecutor(new setSpawnLocaton());
 
         PluginManager pluginManager = Bukkit.getPluginManager();
@@ -33,6 +42,7 @@ public class FreezeFight extends JavaPlugin {
         pluginManager.registerEvents(new ConnectionListener(), this);
         pluginManager.registerEvents(new EventListener(), this);
         pluginManager.registerEvents(new ProjectileListener(), this);
+        pluginManager.registerEvents(new DeathListener(statsInterface), this);
     }
 
     @Override

@@ -12,9 +12,9 @@ public class GameUtils {
         PlayerInventory inventory = player.getInventory();
         inventory.clear();
         inventory.setItem(0, new ItemBuilder(Material.IRON_SWORD).name("§6Schwert").unbreakable(true).itemStack());
-        inventory.setItem(2, new ItemBuilder(Material.BOW).name("§6Bogen").enchantment(Enchantment.ARROW_DAMAGE, 3).unbreakable(true).enchantment(Enchantment.ARROW_KNOCKBACK, 1).itemStack());
-        inventory.setItem(4, new ItemBuilder(Material.SNOWBALL, 16).name("§6Frostball").itemStack());
+        inventory.setItem(1, new ItemBuilder(Material.BOW).name("§6Bogen").enchantment(Enchantment.ARROW_DAMAGE, 3).unbreakable(true).enchantment(Enchantment.ARROW_KNOCKBACK, 1).itemStack());
         inventory.setItem(10, new ItemBuilder(Material.ARROW, 32).itemStack());
+        inventory.setItem(3, new ItemBuilder(Material.SNOWBALL, 16).name("§6Frostball").itemStack());
     }
     public static AttributeInstance setCountdown(Player player) {
         AttributeInstance attributeInstance = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);

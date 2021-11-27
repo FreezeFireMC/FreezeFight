@@ -74,7 +74,7 @@
         <dependency>
             <groupId>com.github.FreezeFireMC</groupId>
             <artifactId>ServerAPI</artifactId>
-            <version>BetaRelease</version>
+            <version>6a3948d</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

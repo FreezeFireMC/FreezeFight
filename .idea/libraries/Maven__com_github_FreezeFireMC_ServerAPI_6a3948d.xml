@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.FreezeFireMC:ServerAPI:6a3948d">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/FreezeFireMC/ServerAPI/6a3948d/ServerAPI-6a3948d.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/FreezeFireMC/ServerAPI/6a3948d/ServerAPI-6a3948d-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/FreezeFireMC/ServerAPI/6a3948d/ServerAPI-6a3948d-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
