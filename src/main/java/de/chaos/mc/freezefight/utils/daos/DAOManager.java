@@ -1,4 +1,4 @@
-package de.chaos.mc.freezefight.utils.stats.dao;
+package de.chaos.mc.freezefight.utils.daos;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -14,7 +14,7 @@ public  class DAOManager<DaoType, KeyType> {
     Dao<DaoType, KeyType> dao = null;
 
     protected BaseConnectionSource connectionSource;
-    protected Logger log = Logger.getLogger(DAOManager.class.getName());
+    protected Logger log = Logger.getLogger(de.chaos.mc.serverapi.utils.daos.DAOManager.class.getName());
 
     private Class<DaoType> daoType;
 

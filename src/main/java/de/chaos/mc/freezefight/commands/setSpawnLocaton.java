@@ -1,7 +1,7 @@
 package de.chaos.mc.freezefight.commands;
 
 import de.chaos.mc.freezefight.FreezeFight;
-import de.chaos.mc.serverapi.utils.locationlibary.LocationInterface;
+import de.chaos.mc.freezefight.utils.locationlibary.LocationInterface;
 import de.chaos.mc.serverapi.utils.stringLibary.DefaultMessages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,8 +19,17 @@ public class setSpawnLocaton implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.hasPermission(DefaultPermissions.setSpawm)) {
-                String name = "Spawn." + locationInterface.getAllKeys(FreezeFight.NAMESPACE);
-                locationInterface.addLocation(FreezeFight.NAMESPACE, name, player.getLocation());
+                if (args.length == 1) {
+
+                } else {
+                    DefaultMessages.wrongSyntax("/setSpawm [MapName]");
+                }
+                String name = "Spawn." + locationInterface.getAllKeys(FreezeFight.NAMESPACE).size();
+                locationInterface.addLocation(args[0], name, player.getLocation());
+                if (!FreezeFight.inMode) {
+                    FreezeFight.currentMap = args[0];
+                }
+
             } else {
                 player.sendMessage(DefaultMessages.NOPERMISSION);
             }

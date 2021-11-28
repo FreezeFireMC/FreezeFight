@@ -8,4 +8,4 @@ depend: [ServerAPI]
 
 commands:
   setSpawn:
-    usage: /setSpawn
+    usage: /setSpawn [MapName]

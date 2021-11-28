@@ -62,19 +62,27 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>universe_releases</id>
+            <url>https://nexus.deinuniversum.net/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>universe_snapshots</id>
+            <url>https://nexus.deinuniversum.net/repository/maven-snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.15-R0.1-SNAPSHOT</version>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.12-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.FreezeFireMC</groupId>
             <artifactId>ServerAPI</artifactId>
-            <version>6a3948d</version>
+            <version>5cef7e4</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

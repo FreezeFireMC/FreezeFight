@@ -26,5 +26,15 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="universe_releases" />
+      <option name="name" value="universe_releases" />
+      <option name="url" value="https://nexus.deinuniversum.net/repository/maven-releases/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="universe_snapshots" />
+      <option name="name" value="universe_snapshots" />
+      <option name="url" value="https://nexus.deinuniversum.net/repository/maven-snapshots/" />
+    </remote-repository>
   </component>
 </project>

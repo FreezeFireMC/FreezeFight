@@ -2,10 +2,11 @@ package de.chaos.mc.freezefight.listeners;
 
 import de.chaos.mc.freezefight.FreezeFight;
 import de.chaos.mc.freezefight.utils.GameUtils;
-import de.chaos.mc.serverapi.utils.locationlibary.LocationInterface;
+import de.chaos.mc.freezefight.utils.locationlibary.LocationInterface;
 import de.chaos.mc.serverapi.utils.stringLibary.DefaultMessages;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.WeatherType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,10 +25,11 @@ public class ConnectionListener implements Listener {
         Player player = event.getPlayer();
         event.setJoinMessage(DefaultMessages.joinMessage(player));
         player.setGameMode(GameMode.ADVENTURE);
+        player.setPlayerWeather(WeatherType.CLEAR);
         GameUtils.setCountdown(player);
         GameUtils.setInvItems(player);
-        if (locationInterface.getAllKeys(FreezeFight.NAMESPACE).size() != 0) {
-            int random = new Random().nextInt(locationInterface.getAllKeys(FreezeFight.NAMESPACE).size());
+        if (FreezeFight.inMode) {
+            int random = new Random().nextInt(locationInterface.getAllKeys(FreezeFight.currentMap).size());
             String stringName = locationInterface.getAllKeys(FreezeFight.NAMESPACE).get(random);
             Location spawnLocation = locationInterface.getLocation(stringName);
 

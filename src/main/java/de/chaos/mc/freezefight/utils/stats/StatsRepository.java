@@ -1,7 +1,7 @@
 package de.chaos.mc.freezefight.utils.stats;
 
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
-import de.chaos.mc.freezefight.utils.stats.dao.StatsDAO;
+import de.chaos.mc.freezefight.utils.daos.StatsDAO;
 import de.chaos.mc.serverapi.utils.daos.DAOManager;
 
 import java.sql.SQLException;
@@ -41,9 +41,17 @@ public class StatsRepository implements StatsInterface {
     public long addKills(UUID uuid, long amount) {
         StatsDAO dao = null;
         try {
-            dao = daoManager.getDAO().queryForId(uuid);
-            dao.setKills(Math.addExact(dao.getKills(), amount));
-            daoManager.getDAO().createOrUpdate(dao);
+            if (daoManager.getDAO().queryForId(uuid) != null) {
+                dao = daoManager.getDAO().queryForId(uuid);
+                dao.setDeaths(Math.addExact(dao.getDeaths(), amount));
+            } else {
+                dao = StatsDAO.builder()
+                        .uuid(uuid)
+                        .Deaths(0L)
+                        .Kills(1L)
+                        .build();
+                daoManager.getDAO().createOrUpdate(dao);
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -54,8 +62,17 @@ public class StatsRepository implements StatsInterface {
     public long addDeath(UUID uuid, long amount) {
         StatsDAO dao = null;
         try {
-            dao = daoManager.getDAO().queryForId(uuid);
-            dao.setDeaths(Math.addExact(dao.getDeaths(), amount));
+            if (daoManager.getDAO().queryForId(uuid) != null) {
+                dao = daoManager.getDAO().queryForId(uuid);
+                dao.setDeaths(Math.addExact(dao.getDeaths(), amount));
+            } else {
+                dao = StatsDAO.builder()
+                        .uuid(uuid)
+                        .Deaths(1L)
+                        .Kills(0L)
+                        .build();
+                daoManager.getDAO().createOrUpdate(dao);
+            }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

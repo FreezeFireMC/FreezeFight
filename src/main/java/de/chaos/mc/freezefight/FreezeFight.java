@@ -5,22 +5,30 @@ import de.chaos.mc.freezefight.listeners.ConnectionListener;
 import de.chaos.mc.freezefight.listeners.DeathListener;
 import de.chaos.mc.freezefight.listeners.EventListener;
 import de.chaos.mc.freezefight.listeners.ProjectileListener;
+import de.chaos.mc.freezefight.utils.locationlibary.LocationInterface;
+import de.chaos.mc.freezefight.utils.locationlibary.LocationRepository;
 import de.chaos.mc.freezefight.utils.stats.StatsInterface;
 import de.chaos.mc.freezefight.utils.stats.StatsRepository;
 import de.chaos.mc.serverapi.api.ServerAPI;
-import de.chaos.mc.serverapi.utils.locationlibary.LocationInterface;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Random;
+
 
 public class FreezeFight extends JavaPlugin {
     public FreezeFight instance;
     private static ServerAPI serverAPI;
     private static LocationInterface locationAPI;
-    public static final String NAMESPACE = "FreezeWars";
+    public static String NAMESPACE = "FreezeFight";
+    public static String currentMap = null;
+    public static boolean inMode = false;
 
     private StatsRepository statsRepository;
     private StatsInterface statsInterface;
+
+    private LocationRepository locationRepository;
 
      @Override
      public void onLoad() {
@@ -30,10 +38,23 @@ public class FreezeFight extends JavaPlugin {
     @Override
     public void onEnable() {
         serverAPI = new ServerAPI();
-        locationAPI = serverAPI.getLocationInterface();
+        int randonMap = new Random().nextInt(locationAPI.getAllKeys(NAMESPACE).size());
+
+        currentMap = locationAPI.getAllKeys(NAMESPACE).get(randonMap);
 
         statsRepository = new StatsRepository(serverAPI.getConnectionSource());
         statsInterface = statsRepository;
+
+        locationRepository = new LocationRepository(serverAPI.getConnectionSource());
+        locationAPI = locationRepository;
+
+
+        if (locationAPI.getAllMaps().size() != 0) {
+            currentMap = locationAPI.getAllMaps().get(new Random().nextInt(locationAPI.getAllMaps().size()));
+            inMode = true;
+        } else {
+            inMode = false;
+        }
 
         getCommand("setSpawn").setExecutor(new setSpawnLocaton());
 
@@ -42,7 +63,7 @@ public class FreezeFight extends JavaPlugin {
         pluginManager.registerEvents(new ConnectionListener(), this);
         pluginManager.registerEvents(new EventListener(), this);
         pluginManager.registerEvents(new ProjectileListener(), this);
-        pluginManager.registerEvents(new DeathListener(statsInterface), this);
+        pluginManager.registerEvents(new DeathListener(statsInterface, locationAPI), this);
     }
 
     @Override

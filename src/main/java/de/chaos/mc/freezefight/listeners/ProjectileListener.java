@@ -14,9 +14,8 @@ public class ProjectileListener implements Listener {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             if (event.getDamager().getType() == EntityType.ARROW) {
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 3, 1, true, false, false));
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 3, 1, true, false, false));
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 3, 1, true, false, false));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 50, 2, true, false));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 50, 2, true, false));
             }
         }
 
