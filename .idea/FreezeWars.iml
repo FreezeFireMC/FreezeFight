@@ -33,7 +33,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.yaml:snakeyaml:1.18" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.md-5:bungeecord-chat:1.12-SNAPSHOT" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-all:5.0.4" level="project" />
-    <orderEntry type="library" name="Maven: com.github.FreezeFireMC:ServerAPI:5cef7e4" level="project" />
+    <orderEntry type="library" name="Maven: com.github.FreezeFireMC:ServerAPI:782be5a458" level="project" />
     <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-engine:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.0.2" level="project" />
@@ -47,5 +47,7 @@
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.j256.ormlite:ormlite-core:5.3" level="project" />
+    <orderEntry type="library" name="paper-1.12.2-1618" level="project" />
+    <orderEntry type="library" name="spigot-1.12.2" level="project" />
   </component>
 </module>

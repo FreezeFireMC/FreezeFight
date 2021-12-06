@@ -1,11 +1,11 @@
 name: FreezeFight
-version: '${project.version}'
+author: Chaoshero5567
+version: 1.0
 main: de.chaos.mc.freezefight.FreezeFight
-api-version: 1.15
-prefix: FreezeFight
-authors: [ Chaoshero5567 ]
-depend: [ServerAPI]
-
+depend:
+  - ServerAPI
 commands:
-  setSpawn:
-    usage: /setSpawn [MapName]
+  SetSpawn:
+    description: SetSpawn
+  Stats:
+    description: Stats
