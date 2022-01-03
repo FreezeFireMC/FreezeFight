@@ -1,6 +1,7 @@
 name: FreezeFight
 author: Chaoshero5567
 version: 1.0
+api-version: 1.17
 main: de.chaos.mc.freezefight.FreezeFight
 depend:
   - ServerAPI

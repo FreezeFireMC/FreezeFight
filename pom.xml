@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.chaos.mc</groupId>
-    <artifactId>FreezeWars</artifactId>
+    <artifactId>FreezeFight</artifactId>
     <version>v1.0</version>
     <packaging>jar</packaging>
 
@@ -62,21 +62,13 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
-        <repository>
-            <id>universe_releases</id>
-            <url>https://nexus.deinuniversum.net/repository/maven-releases/</url>
-        </repository>
-        <repository>
-            <id>universe_snapshots</id>
-            <url>https://nexus.deinuniversum.net/repository/maven-snapshots/</url>
-        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
+            <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.12-R0.1-SNAPSHOT</version>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -90,17 +82,6 @@
             <version>5.0.2</version>
         </dependency>
         <dependency>
-            <groupId>com.j256.ormlite</groupId>
-            <artifactId>ormlite-jdbc</artifactId>
-            <version>5.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>RELEASE</version>
@@ -112,9 +93,11 @@
             <version>1.1.1</version>
         </dependency>
         <dependency>
-            <groupId>com.j256.ormlite</groupId>
-            <artifactId>ormlite-core</artifactId>
-            <version>5.3</version>
+            <groupId>de.chaos.mc</groupId>
+            <artifactId>ServerAPI</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/caosk/Desktop/ServerAPI/ServerAPI-1.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
