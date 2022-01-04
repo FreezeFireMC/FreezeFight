@@ -1,12 +1,16 @@
 package de.chaos.mc.freezefight.listeners;
 
 import de.chaos.mc.freezefight.FreezeFight;
+import de.chaos.mc.freezefight.utils.FreezeFightStringLoader;
+import de.chaos.mc.freezefight.utils.ItemBuilder;
 import de.chaos.mc.serverapi.utils.stringLibary.AbstractMessages;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -21,5 +25,12 @@ public class ConnectionListener implements Listener {
         player.teleport(FreezeFight.getLocationInterface().getLocation("Spawn"));
         event.setJoinMessage(AbstractMessages.joinMessage(player));
         player.setGameMode(GameMode.ADVENTURE);
+        FreezeFightStringLoader.loadLanguage(player.getUniqueId());
+
+        player.getInventory().clear();
+        player.getInventory().setItem(0, new ItemStack(Material.IRON_SWORD));
+        player.getInventory().setItem(1, new ItemStack(Material.BOW));
+        player.getInventory().setItem(3, new ItemStack(Material.EGG));
+        player.getInventory().setItem(8, new ItemBuilder(Material.ARROW, 15).itemStack());
     }
 }
