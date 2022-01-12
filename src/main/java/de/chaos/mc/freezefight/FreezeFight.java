@@ -4,6 +4,9 @@ import de.chaos.mc.freezefight.listeners.ConnectionListener;
 import de.chaos.mc.freezefight.listeners.EventListener;
 import de.chaos.mc.freezefight.listeners.PlayerDeathListener;
 import de.chaos.mc.freezefight.utils.GamePlayerLanguage;
+import de.chaos.mc.freezefight.utils.invlibary.SortingInv;
+import de.chaos.mc.freezefight.utils.invlibary.ormlite.UpdateFreezeFightInvSortingRepository;
+import de.chaos.mc.freezefight.utils.invlibary.ormlite.UpdateFreezeFightInventorySortingInterface;
 import de.chaos.mc.freezefight.utils.locationlibary.LocationInterface;
 import de.chaos.mc.freezefight.utils.locationlibary.LocationRepository;
 import de.chaos.mc.freezefight.utils.stats.StatsInterface;
@@ -27,14 +30,15 @@ public class FreezeFight extends JavaPlugin implements Listener {
 	private static LocationInterface locationInterface;
 	@Getter
 	private static HashMap<UUID, GamePlayerLanguage> onlinePlayers;
+	private static SortingInv sortingInv;
+	private UpdateFreezeFightInventorySortingInterface sortingInterface;
 
 	public static FreezeFight getFreezeFight() {
 		return freezeFight;
 	}
 
-	public void onDisable() {
-		this.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6Paintball&7] &aPlugin disabled"));
-		this.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6Paintball&7] &aDeveloped by &cKorzHorz"));
+	public static SortingInv getSortingInv() {
+		return sortingInv;
 	}
 
 	public static ServerAPI getServerAPI() {
@@ -45,16 +49,9 @@ public class FreezeFight extends JavaPlugin implements Listener {
 		return locationInterface;
 	}
 
-	public void onEnable() {
-		freezeFight = this;
-		serverAPI = new ServerAPI();
-		this.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6FreezeFight&7] &aLoading contents"));
-		statsRepository = new StatsRepository(serverAPI.getConnectionSource());
-		statsInterface = statsRepository;
-		locationInterface = new LocationRepository();
-		onlinePlayers = new HashMap<>();
-
-		init();
+	public void onDisable() {
+		this.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&bFreeze&cFight&7] &aPlugin disabled"));
+		this.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&bFreeze&cFight&7] &aDeveloped by &cFreezeFire"));
 	}
 
 	public void init() {
@@ -70,5 +67,18 @@ public class FreezeFight extends JavaPlugin implements Listener {
 
 	public StatsRepository getStatsRepository() {
 		return statsRepository;
+	}
+
+	public void onEnable() {
+		freezeFight = this;
+		serverAPI = new ServerAPI();
+		this.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6FreezeFight&7] &aLoading contents"));
+		statsRepository = new StatsRepository(serverAPI.getConnectionSource());
+		statsInterface = statsRepository;
+		locationInterface = new LocationRepository();
+		onlinePlayers = new HashMap<>();
+		sortingInterface = new UpdateFreezeFightInvSortingRepository(serverAPI.getConnectionSource());
+		sortingInv = new SortingInv(sortingInterface, serverAPI.getLanguageInterface());
+		init();
 	}
 }
